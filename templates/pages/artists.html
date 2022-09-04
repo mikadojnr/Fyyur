@@ -1,0 +1,21 @@
+{% extends 'layouts/main.html' %}
+{% block title %}Fyyur | Artists{% endblock %}
+{% block content %}
+<ul class="items" style="display: table;">
+	{% for artist in artists %}
+	<li style="display: table-row;">
+		
+		<a href="/artists/{{ artist.id }}" style="display: table-cell;">
+			<i class="fas fa-users"></i>
+			<div class="item">
+				<h5>{{ artist.name }}</h5>
+			</div>
+		</a>
+
+		<form onsubmit="return(confirm('Are you sure you want to permanently delete {{artist.name}}'))" action="/artists/{{artist.id}}/delete" method="POST" style="display: inline; padding-left: 15px;">
+			<input type="submit" value="&cross;" style="border: none; color: red;" >
+		</form>
+	</li>
+	{% endfor %}
+</ul>
+{% endblock %}
